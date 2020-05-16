@@ -83,7 +83,7 @@ class Cors implements CorsInterface
      */
     public function __construct(array $config)
     {
-        $this->allowedCredentials = (bool) ($config['allow-credentiails'] ?? false);
+        $this->allowedCredentials = (bool) ($config['allow-credentials'] ?? false);
         $this->allowedHeaders = (array) ($config['allow-headers'] ?? []);
         $this->exposeHeaders = (array) ($config['expose-headers'] ?? []);
         $this->origins = (array) ($config['origins'] ?? []);
@@ -134,16 +134,18 @@ class Cors implements CorsInterface
      */
     public function getOrigin(): string
     {
+        $requestOrigin = $this->request->getOrigin();
+        $hasWildcard = in_array('*', $this->origins);
+
         // The origin is seted "*"?
-        if (in_array('*', $this->origins)) {
+        if ($hasWildcard && !$requestOrigin) {
             return '*';
         }
 
         // Get request heaer origin line.
         // If the request origin in config
         // to be origins return the request origin value.
-        $requestOrigin = $this->request->getOrigin();
-        if (in_array($requestOrigin, $this->origins)) {
+        if (in_array($requestOrigin, $this->origins) || $hasWildcard) {
             return $requestOrigin;
         }
 

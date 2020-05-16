@@ -1,5 +1,6 @@
 # CORS
 
+![PHP Composer](https://github.com/medz/cors/workflows/PHP%20Composer/badge.svg)
 [![StyleCI](https://styleci.io/repos/125001413/shield?branch=master)](https://styleci.io/repos/125001413)
 [![Build Status](https://travis-ci.org/medz/cors.svg?branch=master)](https://travis-ci.org/medz/cors)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmedz%2Fcors.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmedz%2Fcors?ref=badge_shield)
@@ -8,13 +9,16 @@ PHP CORS (Cross-origin resource sharing) middleware.
 
 ## Support
 
-- [x] 🐘[Array, Coding in Native PHP](#array)
-- [x] 🔌[Using PSR-7](#psr-7)
+- [x] [Array, Coding in Native PHP](#array)
+- [x] [Using PSR-7](#psr-7)
+- [x] [PSR-15 Support](https://github.com/medz/cors/blob/master/docs/psr-15-support.md)
 - [ ] Symfony Support
 - [x] [Laravel Support](https://github.com/medz/cors/blob/master/docs/using-by-laravel.md)
 - [x] [Lumen Support](https://github.com/medz/cors/blob/master/docs/using-by-lumen.md)
 - [ ] Yii2 Support
-- [ ] Slim Framework
+- [x] [Swoft Framework](https://github.com/medz/cors/blob/master/docs/using-by-swoft.md)
+- [x] [Slim Framework](https://github.com/medz/cors/blob/master/docs/using-by-slim.md)
+- [x] [ThinkPHP Support](https://github.com/medz/cors/blob/master/docs/using-by-thinkphp.md)
 
 ## Using
 
@@ -43,7 +47,7 @@ The config example:
 
 ```php
 $config = [
-    'allow-credentiails' => false, // set "Access-Control-Allow-Credentials" 👉 string "false" or "true".
+    'allow-credentials' => false, // set "Access-Control-Allow-Credentials" 👉 string "false" or "true".
     'allow-headers'      => ['*'], // ex: Content-Type, Accept, X-Requested-With
     'expose-headers'     => [],
     'origins'            => ['*'], // ex: http://localhost
@@ -81,9 +85,13 @@ $response = $cors->getResponse();
 
 Because of the interface features provided by this package, you can implement it in a small amount of code in any other framework.
 
+### Excellent Repositories
+
+- [ThinkSNS+](https://github.com/slimkit/thinksns-plus) A strong community system
+
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://github.com/medz/cors/blob/master/LICENSE).
+The component is open-sourced software licensed under the [MIT license](https://github.com/medz/cors/blob/master/LICENSE).
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmedz%2Fcors.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmedz%2Fcors?ref=badge_large)

@@ -1,5 +1,6 @@
 {
     "name": "medz/cors",
+    "keywords": ["cors", "php", "php-cors", "middleware", "crossdomain", "cors-request", "request", "response", "psr-7", "laravel", "laravel5", "yii2", "slim", "symfony", "thinkphp", "psr-15"],
     "description": "PHP CORS (Cross-origin resource sharing) middleware.",
     "type": "library",
     "license": "MIT",
@@ -12,7 +13,10 @@
     "autoload": {
         "psr-4": {
             "Medz\\Cors\\": "src/"
-        }
+        },
+        "files": [
+            "src/ThinkPHP/injection.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -23,11 +27,15 @@
         "php": ">=7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.5"
+        "php": ">=7.3",
+        "phpunit/phpunit": "^9.1"
+    },
+    "scripts": {
+        "test": "phpunit"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1-dev"
+            "dev-master": "1.3-dev"
         },
         "laravel": {
             "providers": [

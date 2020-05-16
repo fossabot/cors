@@ -68,6 +68,10 @@ class Response implements ResponseInterface
                 $this->response->headers->set($name, $value);
                 break;
 
+            case 'thinkphp':
+                $this->response->header($name, $value);
+                break;
+
             default:
                 $this->response[$name] = $value;
                 break;
@@ -153,11 +157,15 @@ class Response implements ResponseInterface
      */
     public function setAccessControlExposeHeaders($headers)
     {
+        // If hraders is array, parse to string.
         if (is_array($headers)) {
             $headers = implode(', ', $headers);
         }
 
-        $this->setHeader('Access-Control-Expose-Headers', (string) $headers);
+        // The headers not is empty, append response hraders.
+        if (!empty($headers)) {
+            $this->setHeader('Access-Control-Expose-Headers', (string) $headers);
+        }
 
         return $this;
     }
@@ -172,7 +180,7 @@ class Response implements ResponseInterface
     public function setAccessControlMaxAge(int $maxAge = 0)
     {
         if ($maxAge) {
-            $this->setHeader('Access-Control-Max-Age', $maxAge);
+            $this->setHeader('Access-Control-Max-Age', (string) $maxAge);
         }
 
         return $this;
